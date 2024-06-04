@@ -1,20 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   faCheck,
   faTrash,
   faArrowUp,
   faArrowDown,
   faAdd,
+  faPen,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function ToDoList() {
-  const [tasks, setTask] = useState([
-    "Take a shower",
-    "Eat breakfast",
-    "Go to work",
-  ]);
+  const [tasks, setTask] = useState([]);
   const [newTask, setNewTask] = useState("");
+
+  // Load tasks from localStorage when the component mounts
+  useEffect(() => {
+    const storedTasks = localStorage.getItem("tasks");
+    if (storedTasks) {
+      console.log("Loaded tasks from localStorage:", JSON.parse(storedTasks));
+      setTask(JSON.parse(storedTasks));
+    } else {
+      console.log("No tasks in localStorage, initializing with default tasks.");
+      const defaultTasks = ["Take a shower", "Eat breakfast", "Go to work"];
+      setTask(defaultTasks);
+      localStorage.setItem("tasks", JSON.stringify(defaultTasks));
+    }
+  }, []);
+
+  // Save tasks to localStorage whenever tasks change
+  useEffect(() => {
+    if (tasks.length > 0) {
+      console.log("Saving tasks to localStorage:", tasks);
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+    }
+  }, [tasks]);
 
   function handleInputChange(event) {
     setNewTask(event.target.value);
@@ -22,38 +41,49 @@ function ToDoList() {
 
   function addTask() {
     if (newTask.trim() !== "") {
-      setTask((t) => [...t, newTask]);
+      setTask((prevTasks) => {
+        const updatedTasks = [...prevTasks, newTask];
+        console.log("Updated tasks after adding:", updatedTasks);
+        return updatedTasks;
+      });
       setNewTask("");
     }
   }
 
+  // The _ is a convention to indicate that we are not using the value
   function deleteTask(index) {
-    // The _ is a convention to indicate that we are not using the value
-    const updatedTasks = tasks.filter((_, i) => i !== index);
-    setTask(updatedTasks);
+    setTask((prevTasks) => {
+      const updatedTasks = prevTasks.filter((_, i) => i !== index);
+      console.log("Updated tasks after deleting:", updatedTasks);
+      return updatedTasks;
+    });
   }
 
   function moveTaskUp(index) {
     if (index > 0) {
-      const updatedTasks = [...tasks];
-      // Array destructuring to swap the elements
-      [updatedTasks[index], updatedTasks[index - 1]] = [
-        updatedTasks[index - 1],
-        updatedTasks[index],
-      ];
-      setTask(updatedTasks);
+      setTask((prevTasks) => {
+        const updatedTasks = [...prevTasks];
+        [updatedTasks[index], updatedTasks[index - 1]] = [
+          updatedTasks[index - 1],
+          updatedTasks[index],
+        ];
+        console.log("Updated tasks after moving up:", updatedTasks);
+        return updatedTasks;
+      });
     }
   }
 
   function moveTaskDown(index) {
     if (index < tasks.length - 1) {
-      const updatedTasks = [...tasks];
-      // Array destructuring to swap the elements
-      [updatedTasks[index], updatedTasks[index + 1]] = [
-        updatedTasks[index + 1],
-        updatedTasks[index],
-      ];
-      setTask(updatedTasks);
+      setTask((prevTasks) => {
+        const updatedTasks = [...prevTasks];
+        [updatedTasks[index], updatedTasks[index + 1]] = [
+          updatedTasks[index + 1],
+          updatedTasks[index],
+        ];
+        console.log("Updated tasks after moving down:", updatedTasks);
+        return updatedTasks;
+      });
     }
   }
 
