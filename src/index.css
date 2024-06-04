@@ -66,3 +66,46 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+input[type="text"] {
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #ffffff;
+  transition: border-color 0.25s;
+}
+
+ol {
+  padding: 0;
+}
+
+li {
+  margin-bottom: 10px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.text {
+  flex: 1;
+}
+
+.delete-button,
+.move-button {
+  margin-left: 10px;
+}
+
+.add-button {
+  background-color: #1cd77f;
+}
+
+.delete-button {
+  background-color: #ff5e5e;
+}
+
+.move-button {
+  background-color: #646cff;
+}

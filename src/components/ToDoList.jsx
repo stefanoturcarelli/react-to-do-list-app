@@ -46,10 +46,10 @@ function ToDoList() {
               Delete
             </button>
             <button className="move-button" onClick={() => moveTaskUp(index)}>
-              Move Up
+              Up
             </button>
             <button className="move-button" onClick={() => moveTaskDown(index)}>
-              Move Down
+              Down
             </button>
           </li>
         ))}
