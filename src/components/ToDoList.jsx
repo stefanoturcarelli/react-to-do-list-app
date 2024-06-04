@@ -59,7 +59,7 @@ function ToDoList() {
 
   return (
     <>
-      <section className="to-do-list-section">
+      <section className="container to-do-list-section">
         <div className="to-do-list">
           <h1>To-Do List</h1>
         </div>
