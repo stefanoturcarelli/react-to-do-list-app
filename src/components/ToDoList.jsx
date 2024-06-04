@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 function ToDoList() {
-  const [task, setTask] = useState([
+  const [tasks, setTask] = useState([
     "Take a shower",
     "Eat breakfast",
     "Go to work",
@@ -12,13 +12,42 @@ function ToDoList() {
     setNewTask(event.target.value);
   }
 
-  function addTask() {}
+  function addTask() {
+    if (newTask.trim() !== "") {
+      setTask((t) => [...t, newTask]);
+      setNewTask("");
+    }
+  }
 
-  function deleteTask(index) {}
+  function deleteTask(index) {
+    // The _ is a convention to indicate that we are not using the value
+    const updatedTasks = tasks.filter((_, i) => i !== index);
+    setTask(updatedTasks);
+  }
 
-  function moveTaskUp(index) {}
+  function moveTaskUp(index) {
+    if (index > 0) {
+      const updatedTasks = [...tasks];
+      // Array destructuring to swap the elements
+      [updatedTasks[index], updatedTasks[index - 1]] = [
+        updatedTasks[index - 1],
+        updatedTasks[index],
+      ];
+      setTask(updatedTasks);
+    }
+  }
 
-  function moveTaskDown(index) {}
+  function moveTaskDown(index) {
+    if (index < tasks.length - 1) {
+      const updatedTasks = [...tasks];
+      // Array destructuring to swap the elements
+      [updatedTasks[index], updatedTasks[index + 1]] = [
+        updatedTasks[index + 1],
+        updatedTasks[index],
+      ];
+      setTask(updatedTasks);
+    }
+  }
 
   return (
     <>
@@ -39,7 +68,7 @@ function ToDoList() {
       </div>
 
       <ol>
-        {task.map((task, index) => (
+        {tasks.map((task, index) => (
           <li key={index}>
             <span className="text">{task}</span>
             <button className="delete-button" onClick={() => deleteTask(index)}>
