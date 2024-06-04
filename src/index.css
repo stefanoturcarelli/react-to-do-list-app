@@ -79,6 +79,7 @@ input[type="text"] {
   font-family: inherit;
   transition: border-color 0.25s;
   flex: 1;
+  padding: 0.6em 1.2em;
 }
 
 ol {
@@ -126,9 +127,48 @@ li {
   overflow-y: auto;
 }
 
-.to-do-list-section,
-.li,
-input[type="text"],
-span {
-  padding: 0.6em 1.2em;
+.header-container {
+  display: grid;
+  grid-template-columns: 20fr 1fr 1fr;
+  align-items: center;
+  justify-items: end;
+  margin-bottom: 20px;
+}
+
+.header-container :first-child {
+  justify-self: start;
+}
+
+.card {
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #e4e4e4;
+}
+
+.card-section {
+  margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.card-header-icon-background {
+  padding: 10px;
+  border-radius: 50%;
+  background-color: #fff;
+  width: 50px;
+  height: 50px;
+  line-height: 25px;
+}
+
+.card-header {
+  font-size: 3rem;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.card-body {
+  display: flex;
+  justify-content: space-between;
 }
