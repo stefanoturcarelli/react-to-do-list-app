@@ -63,7 +63,8 @@ function ToDoList() {
         <div className="to-do-list">
           <h1>To-Do List</h1>
         </div>
-        <div>
+
+        <section className="add-section">
           <input
             type="text"
             placeholder="Enter a new task"
@@ -73,7 +74,8 @@ function ToDoList() {
           <button className="add-button" onClick={addTask}>
             <FontAwesomeIcon icon={faAdd} />
           </button>
-        </div>
+        </section>
+
         <ol>
           {tasks.map((task, index) => (
             <li key={index}>

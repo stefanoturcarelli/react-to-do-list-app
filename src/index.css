@@ -9,6 +9,22 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* section,
+div,
+ol,
+li,
+button,
+input,
+span {
+  outline: auto;
+} */
+
+h1 {
+  font-size: 3rem;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -21,7 +37,7 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #ffffff;
 }
 button:focus,
 button:focus-visible {
@@ -34,22 +50,28 @@ button:focus-visible {
     background-color: #ffffff;
   }
   a:hover {
-    color: #747bff;
+    color: #f7cb39;
   }
   button {
     background-color: #f9f9f9;
   }
 }
 
+.add-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
 input[type="text"] {
   border-radius: 8px;
   border: 1px solid #e0e0e0;
-  padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #ffffff;
   transition: border-color 0.25s;
+  flex: 1;
 }
 
 ol {
@@ -58,7 +80,6 @@ ol {
 
 li {
   margin-bottom: 10px;
-  padding: 15px;
   display: flex;
   align-items: center;
 }
@@ -67,6 +88,7 @@ li {
   flex: 1;
 }
 
+.add-button,
 .delete-button,
 .move-button {
   margin-left: 10px;
@@ -89,9 +111,9 @@ li {
   overflow-y: auto;
 }
 
-section,
-div,
-ol,
-li {
-  outline: auto;
+.to-do-list-section,
+.li,
+input[type="text"],
+span {
+  padding: 0.6em 1.2em;
 }
