@@ -3,6 +3,9 @@ import {
   faClock,
   faBell,
   faEllipsisVertical,
+  faStopwatch,
+  faList,
+  faCircleExclamation,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Card from "./Card";
@@ -24,10 +27,10 @@ function Summary() {
           </div>
         </div>
         <div className="card-section">
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+          <Card icon={faClock} />
+          <Card icon={faStopwatch} />
+          <Card icon={faList} />
+          <Card icon={faCircleExclamation} />
         </div>
       </div>
     </>
