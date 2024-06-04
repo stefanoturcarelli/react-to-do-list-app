@@ -11,6 +11,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Card from "./Card";
 
 function Summary() {
+  // Count all tasks and display the count in the card
+  const [tasks, setTask] = useState([]);
+  useEffect(() => {
+    const storedTasks = localStorage.getItem("tasks");
+    if (storedTasks) {
+      setTask(JSON.parse(storedTasks));
+    }
+  });
+
   return (
     <>
       <div className="container">
@@ -27,10 +36,10 @@ function Summary() {
           </div>
         </div>
         <div className="card-section">
-          <Card icon={faClock} />
-          <Card icon={faStopwatch} />
-          <Card icon={faList} />
-          <Card icon={faCircleExclamation} />
+          <Card icon={faClock} status="Today" count={1} />
+          <Card icon={faStopwatch} status="Scheduled" count={1} />
+          <Card icon={faList} status="All Tasks" count={tasks.length} />
+          <Card icon={faCircleExclamation} status="Overdue" count={1} />
         </div>
       </div>
     </>

@@ -1,11 +1,5 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faClock,
-  faStopwatch,
-  faList,
-  faCircleExclamation,
-} from "@fortawesome/free-solid-svg-icons";
 
 function Card(props) {
   return (
@@ -16,8 +10,8 @@ function Card(props) {
         </div>
       </div>
       <div className="card-body">
-        <span>Today</span>
-        <span>6</span>
+        <span>{props.status}</span>
+        <span>{props.count}</span>
       </div>
     </div>
   );
