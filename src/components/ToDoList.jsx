@@ -1,4 +1,12 @@
 import React, { useState } from "react";
+import {
+  faCheck,
+  faTrash,
+  faArrowUp,
+  faArrowDown,
+  faAdd,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function ToDoList() {
   const [tasks, setTask] = useState([
@@ -51,32 +59,35 @@ function ToDoList() {
 
   return (
     <>
-      <div className="to-do-list">
-        <h1>To-Do List</h1>
-      </div>
-
-      <div>
-        <input
-          type="text"
-          placeholder="Enter a new task"
-          value={newTask}
-          onChange={handleInputChange}
-        />
-        <button className="add-button" onClick={addTask}>
-          Add Task
-        </button>
-      </div>
-
-      <ol>
-        {tasks.map((task, index) => (
-          <li key={index}>
-            <span className="text">{task}</span>
-            <button className="delete-button" onClick={() => deleteTask(index)}>
-              Delete
-            </button>
-          </li>
-        ))}
-      </ol>
+      <section className="to-do-list-section">
+        <div className="to-do-list">
+          <h1>To-Do List</h1>
+        </div>
+        <div>
+          <input
+            type="text"
+            placeholder="Enter a new task"
+            value={newTask}
+            onChange={handleInputChange}
+          />
+          <button className="add-button" onClick={addTask}>
+            <FontAwesomeIcon icon={faAdd} />
+          </button>
+        </div>
+        <ol>
+          {tasks.map((task, index) => (
+            <li key={index}>
+              <span className="text">{task}</span>
+              <button
+                className="delete-button"
+                onClick={() => deleteTask(index)}
+              >
+                <FontAwesomeIcon icon={faTrash} />
+              </button>
+            </li>
+          ))}
+        </ol>
+      </section>
     </>
   );
 }
