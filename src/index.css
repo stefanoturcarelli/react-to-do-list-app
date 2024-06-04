@@ -93,11 +93,15 @@ li {
 
 .text {
   flex: 1;
+  overflow: hidden; /* Hide overflow text */
+  white-space: nowrap; /* Prevent text from wrapping to the next line */
+  text-overflow: ellipsis; /* Add ellipsis (...) to overflow text */
 }
 
 .add-button,
 .delete-button,
-.move-button {
+.move-button,
+.edit-button {
   margin-left: 10px;
 }
 
@@ -111,6 +115,10 @@ li {
 
 .move-button {
   background-color: #646cff;
+}
+
+.edit-button {
+  background-color: #f7cb39;
 }
 
 .to-do-list-section {

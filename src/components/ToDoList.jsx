@@ -12,6 +12,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 function ToDoList() {
   const [tasks, setTask] = useState([]);
   const [newTask, setNewTask] = useState("");
+  const [isEditing, setIsEditing] = useState(false);
+  const [editIndex, setEditIndex] = useState(null);
 
   // Load tasks from localStorage when the component mounts
   useEffect(() => {
@@ -50,6 +52,20 @@ function ToDoList() {
     }
   }
 
+  function updateTask() {
+    if (newTask.trim() !== "") {
+      setTask((prevTasks) => {
+        const updatedTasks = [...prevTasks];
+        updatedTasks[editIndex] = newTask;
+        console.log("Updated tasks after editing:", updatedTasks);
+        return updatedTasks;
+      });
+      setNewTask("");
+      setIsEditing(false);
+      setEditIndex(null);
+    }
+  }
+
   // The _ is a convention to indicate that we are not using the value
   function deleteTask(index) {
     setTask((prevTasks) => {
@@ -57,6 +73,12 @@ function ToDoList() {
       console.log("Updated tasks after deleting:", updatedTasks);
       return updatedTasks;
     });
+  }
+
+  function editTask(index) {
+    setNewTask(tasks[index]);
+    setIsEditing(true);
+    setEditIndex(index);
   }
 
   function moveTaskUp(index) {
@@ -101,8 +123,11 @@ function ToDoList() {
             value={newTask}
             onChange={handleInputChange}
           />
-          <button className="add-button" onClick={addTask}>
-            <FontAwesomeIcon icon={faAdd} />
+          <button
+            className="add-button"
+            onClick={isEditing ? updateTask : addTask}
+          >
+            <FontAwesomeIcon icon={isEditing ? faCheck : faAdd} />
           </button>
         </section>
 
@@ -110,6 +135,9 @@ function ToDoList() {
           {tasks.map((task, index) => (
             <li key={index}>
               <span className="text">{task}</span>
+              <button className="edit-button" onClick={() => editTask(index)}>
+                <FontAwesomeIcon icon={faPen} />
+              </button>
               <button
                 className="delete-button"
                 onClick={() => deleteTask(index)}
