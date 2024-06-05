@@ -4,7 +4,7 @@ This is a To-Do List application built with React, Vite, and localStorage.
 
 ## Screenshots
 
-![image](https://github.com/stefanoturcarelli/react-to-do-list-app/assets/67341828/f982a239-735d-4e53-a949-e8d34af7960d)
+![image](https://github.com/stefanoturcarelli/react-to-do-list-app/assets/67341828/b4a0fe61-4cb4-4aaa-8cf6-230dc60895be)
 
 ## Features
 
