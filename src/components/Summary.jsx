@@ -13,12 +13,13 @@ import Card from "./Card";
 function Summary() {
   // Count all tasks and display the count in the card
   const [tasks, setTask] = useState([]);
+
   useEffect(() => {
     const storedTasks = localStorage.getItem("tasks");
     if (storedTasks) {
       setTask(JSON.parse(storedTasks));
     }
-  });
+  }, []); // Add an empty dependency array here
 
   return (
     <>
